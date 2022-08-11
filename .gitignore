@@ -6,11 +6,13 @@
 /out-tsc
 
 # dependencies
-/node_modules
+node_modules/
 package-lock.json
+pnpm-lock.yaml
+yarn.lock
 
 # IDEs and editors
-/.idea
+.idea/
 .project
 .classpath
 .c9/
@@ -18,8 +20,9 @@ package-lock.json
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
-.vscode/*
+# IDE - VS & VSCode
+.vs/
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

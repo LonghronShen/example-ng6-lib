@@ -1,64 +1,53 @@
 {
-  "name": "example-ng6-lib",
-  "version": "0.1.0",
-  "description": "Angular 6 Library example",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/t-palmer/example-ng6-lib.git"
-  },
-  "author": "Todd Palmer",
-  "license": "ISC",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build_lib": "ng build --prod example-ng6-lib",
-    "npm_pack": "cd dist/example-ng6-lib && npm pack",
-    "package": "npm run build_lib && npm run npm_pack"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
-    "@angular/compiler": "^6.0.0",
-    "@angular/animations": "^6.0.0",
-    "@angular/forms": "^6.0.0",
-    "@angular/http": "^6.0.0",
-    "@angular/platform-browser": "^6.0.0",
-    "@angular/platform-browser-dynamic": "^6.0.0",
-    "@angular/router": "^6.0.0",
-    "classlist.js": "^1.1.20150312",
-    "core-js": "^2.5.4",
-    "rxjs": "^6.0.0",
-    "web-animations-js": "^2.3.1",
-    "zone.js": "^0.8.26"
-  },
-  "devDependencies": {
-    "@angular/compiler-cli": "^6.0.0",
-    "@angular-devkit/build-ng-packagr": "~0.6.3",
-    "@angular-devkit/build-angular": "~0.6.0",
-    "ng-packagr": "^3.0.0-rc.2",
-    "tsickle": ">=0.25.5",
-    "tslib": "^1.7.1",
-    "typescript": "~2.7.2",
-    "@angular/cli": "~6.0.0",
-    "@angular/language-service": "^6.0.0",
-    "@types/jasmine": "~2.8.6",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
-    "codelyzer": "~4.2.1",
-    "jasmine-core": "~2.99.1",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~1.7.1",
-    "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage-istanbul-reporter": "~1.4.2",
-    "karma-jasmine": "~1.1.1",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.3.0",
-    "ts-node": "~5.0.1",
-    "tslint": "~5.9.1"
-  }
+    "name": "example-ng6-workspace",
+    "private": true,
+    "workspaces": [
+        "projects/*"
+    ],
+    "scripts": {
+        "ng": "ng",
+        "bootstrap": "npm -g i pnpm@6.32.15 husky",
+        "deps": "pnpm recursive install",
+        "build-lib": "ng build example-ng6-lib --prod",
+        "build-app": "ng build example-ng6-lib-app --prod",
+        "e2e": "ng e2e example-ng6-lib-app-e2e",
+        "npm_pack": "cd dist/example-ng6-lib && npm pack",
+        "package": "npm run build-lib && npm run npm_pack",
+        "start": "ng serve --proxy-config proxy.config.json --open --port 5000 example-ng6-lib-app",
+        "clean": "pnpm recursive run clean",
+        "build": "npm run build-lib && npm run build-app",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,yml,yaml,md}\"",
+        "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,yml,yaml,md}\""
+    },
+    "engines": {
+        "node": "14",
+        "pnpm": ">=6.32.3"
+    },
+    "dependencies": {
+        "@angular/compiler": "^6.0.0",
+        "@angular/core": "^6.0.0",
+        "rxjs": "~6.0.0",
+        "zone.js": "^0.8.26"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "~0.6.0",
+        "@angular-devkit/build-ng-packagr": "~0.6.3",
+        "@angular/cli": "~6.0.0",
+        "@angular/compiler-cli": "^6.0.0",
+        "@angular/language-service": "^6.0.0",
+        "@changesets/cli": "^2.24.2",
+        "@compodoc/ngd-cli": "^2.1.0",
+        "@trivago/prettier-plugin-sort-imports": "3.2.0",
+        "ng-packagr": "^3.0.0-rc.2",
+        "nswag": "^13.16.1",
+        "nyc": "^15.1.0",
+        "prettier": "2.6.2",
+        "rimraf": "^3.0.2",
+        "tsickle": "0.34.0",
+        "tslib": "^1.7.1",
+        "typescript": "~2.9.0"
+    },
+    "resolutions": {
+        "typescript": "~2.9.0"
+    }
 }
